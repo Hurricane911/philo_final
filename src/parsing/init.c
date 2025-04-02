@@ -6,14 +6,15 @@
 /*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:16:55 by joyim             #+#    #+#             */
-/*   Updated: 2025/04/01 20:57:02 by joyim            ###   ########.fr       */
+/*   Updated: 2025/04/02 20:29:44 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 void init(t_data *data, int ac, char **av);
-void init_philos(int nb_philos, int eat_loop, t_philo *philo);
+void init_philos(t_data *data);
+void init_forks_lock(t_data *data);
 
 void init(t_data *data, int ac, char **av)
 {
@@ -26,19 +27,52 @@ void init(t_data *data, int ac, char **av)
 	data->is_exit = 0;
 	data->is_dead = 0;
 
-	init_philos(data->nb_philos, data->eat_loop, data->philo);
+	init_philos(data);
+	init_forks_locks(data);
 
 }
 
-void init_philos(int nb_philos, int eat_loop, t_philo *philo)
+void init_forks_locks(t_data *data)
+{
+	int i;
+
+	i = 0;
+	while(i < data->nb_philos)
+	{
+		if(pthread_mutex_init(&data->lock_forks[i], 0) != 0)
+			return (handle_error(data, MUTEX_ERROR));
+		i++;
+	}
+	if(pthread_mutex_init(&data->lock_exit, 0) !=0\
+	|| pthread_mutex_init(&data->lock_print, 0) !=0\
+	|| pthread_mutex_init(&data->lock_global, 0) !=0\
+	|| pthread_mutex_init(&data->lock_dead, 0) !=0)
+		return (handle_error(data, MUTEX_ERROR));
+	// printf("hello");
+}
+
+void assign_forks(t_data *data, t_philo *philo)
+{
+
+	philo->forks[0] = philo->id;
+	philo->forks[1] = (philo->id + 1) % data->nb_philos;
+	// printf("forks :%d forks: %d\n", philo->forks[0], philo->forks[1]);
+
+}
+
+void init_philos(t_data *data)
 {
 	int i = 0;
-	while(i < nb_philos)
+	while(i < data->nb_philos)
 	{
-		philo[i].id = i + 1;
-		philo[i].meals_required = eat_loop;
-		printf("Philosopher %d initialized with %d meals required\n", 
-			philo[i].id, philo[i].meals_required);
+		data->philo[i].id = i;
+		data->philo[i].meals_required = data->eat_loop;
+		// printf("%d: ", data->philo[i].id);
+		data->philo[i].last_meal = 0;
+		assign_forks(data, &data->philo[i]);
+		if((pthread_mutex_init(&data->philo[i].lock_eat_routine, 0) != 0))
+			return (handle_error(data, MUTEX_ERROR));
+		data->philo[i].data = data;
 		i++;
 	}
 }
