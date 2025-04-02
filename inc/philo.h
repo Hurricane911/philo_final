@@ -6,7 +6,7 @@
 /*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 22:52:31 by joyim             #+#    #+#             */
-/*   Updated: 2025/04/02 20:29:20 by joyim            ###   ########.fr       */
+/*   Updated: 2025/04/03 01:23:51 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,27 @@
 # include <stdint.h>
 # include <string.h>
 
-
 # define RED "\033[0;31m" //ded
 # define GREEN "\033[0;32m" //eat
 # define YELLOW "\033[0;33m" //thinking
 # define PURPLE "\033[0;35m" // sleep
 # define CYAN "\033[0;36m"
-# define RESET "\033[0m" //time
+# define COLOR "\033[0m" //time
+
+typedef enum e_state
+{
+	DIED = 0,
+	EATING = 1,
+	SLEEPING = 2,
+	THINKING = 3,
+	GOT_FORK1 = 4,
+	GOT_FORK2 = 5
+}t_state;
 
 # define ARG_ERROR -1
 # define FORMAT_ERROR -2
 # define MUTEX_ERROR -3
+# define THREAD_ERROR -4
 
 # define ARG_MSG "Arg Error: ./philo\n\
 1 - <total_philos>\n\
@@ -46,6 +56,7 @@
 3 - "
 
 # define MUTEX_MSG "Mutex_ERROR"
+# define THREAD_MSG "THREAD_ERRO"
 
 # define MAX 200 
 
@@ -60,7 +71,6 @@ typedef struct s_philo
 	int		forks[2];
 	pthread_mutex_t lock_eat_routine;
 	t_data *data;
-	
 	
 }t_philo;
 
@@ -83,7 +93,9 @@ typedef struct s_data
 	t_philo philo[MAX];
 }t_data;
 
-#endif
+
+// main.c
+void execution(t_data *data);
 
 // error.c
 void handle_error(t_data *data, int error_num);
@@ -103,3 +115,13 @@ void init(t_data *data, int ac, char **av);
 void assign_forks(t_data *data, t_philo *philo);
 void init_philos(t_data *data);
 void init_forks_locks(t_data *data);
+
+// print.c
+void print_action(t_philo *philo, t_state state);
+void print_state(t_philo *philo, char *str, t_state state);
+
+// routine.c
+void *routine(void *data);
+void single_philo(t_philo *philo);
+
+#endif

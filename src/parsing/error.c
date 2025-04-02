@@ -6,7 +6,7 @@
 /*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 23:04:41 by joyim             #+#    #+#             */
-/*   Updated: 2025/04/02 20:16:59 by joyim            ###   ########.fr       */
+/*   Updated: 2025/04/02 23:16:03 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void handle_error(t_data *data, int error_num)
 		ft_putendl_fd(FORMAT_MSG, STDERR_FILENO);
 	if(error_num == MUTEX_ERROR)
 		ft_putendl_fd(MUTEX_MSG, STDERR_FILENO);
+	if(error_num == THREAD_ERROR)
+		ft_putendl_fd(THREAD_MSG, STDERR_FILENO);
 	if(data)
 		cleanup_mutex(data);
 }
