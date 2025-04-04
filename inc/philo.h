@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joyson <joyson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 22:52:31 by joyim             #+#    #+#             */
-/*   Updated: 2025/04/04 13:04:22 by joyson           ###   ########.fr       */
+/*   Updated: 2025/04/04 14:37:06 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ typedef struct s_data
 
 // main.c
 void execution(t_data *data);
+void monitor_death(t_data *data);
 void exit_execution(t_data *data);
 
 // error.c
