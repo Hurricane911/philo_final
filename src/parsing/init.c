@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joyson <joyson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:16:55 by joyim             #+#    #+#             */
-/*   Updated: 2025/04/04 18:25:36 by joyson           ###   ########.fr       */
+/*   Updated: 2025/04/04 20:10:50 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void init(t_data *data, int ac, char **av)
 	data->death_time = ft_atoi(av[2]);
 	data->eat_time = ft_atoi(av[3]);
 	data->sleep_time = ft_atoi(av[4]);
+	data->eat_loop = -1;
 	if(ac == 6)
 		data->eat_loop = ft_atoi(av[5]);
 	data->is_exit = 0;

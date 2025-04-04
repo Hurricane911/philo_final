@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joyson <joyson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 23:08:19 by joyim             #+#    #+#             */
-/*   Updated: 2025/04/04 13:33:24 by joyson           ###   ########.fr       */
+/*   Updated: 2025/04/04 20:48:33 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void print_action(t_philo *philo, t_state state)
 	if(state == DIED)
 		print_state(philo, "Died", state);
 	if(state == EATING)
-		print_state(philo, "Eating", state);
+		print_state(philo, "is eating", state);
 	if(state == SLEEPING)
-		print_state(philo, "Sleeping", state);
+		print_state(philo, "is sleeping", state);
 	if(state == THINKING)
-		print_state(philo, "Thinking", state);
+		print_state(philo, "is thinking", state);
 	pthread_mutex_unlock(&philo->data->lock_print);
 }
 

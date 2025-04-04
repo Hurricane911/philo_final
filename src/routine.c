@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joyson <joyson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 22:49:13 by joyim             #+#    #+#             */
-/*   Updated: 2025/04/04 13:04:17 by joyson           ###   ########.fr       */
+/*   Updated: 2025/04/04 20:03:34 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void *routine(void *data)
 
 	if (philo->data->nb_philos == 1)
 		return (single_philo(philo));
-	if (philo->id % 2 == 1)
+	if (philo->id % 2)
 		waiting(philo->data, philo->data->sleep_time);
 	while(!exit_condition(philo->data))
 	{
@@ -73,13 +73,13 @@ void eat_routine(t_philo *philo)
 	
 	if(philo->forks[0] < philo->forks[1])
 	{
-		pthread_mutex_unlock(&philo->data->lock_forks[philo->forks[0]]);
 		pthread_mutex_unlock(&philo->data->lock_forks[philo->forks[1]]);
+		pthread_mutex_unlock(&philo->data->lock_forks[philo->forks[0]]);
 	}
 	else
 	{
-		pthread_mutex_unlock(&philo->data->lock_forks[philo->forks[1]]);
 		pthread_mutex_unlock(&philo->data->lock_forks[philo->forks[0]]);
+		pthread_mutex_unlock(&philo->data->lock_forks[philo->forks[1]]);
 	}
 }
 

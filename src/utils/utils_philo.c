@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_philo.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/04 20:49:40 by joyim             #+#    #+#             */
+/*   Updated: 2025/04/04 20:49:46 by joyim            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
+
 time_t get_time(void);
 void waiting(t_data *data, time_t waiting_time);
 int exit_condition(t_data *data);
@@ -9,7 +22,7 @@ time_t get_time(void)
     struct timeval time;
 
     gettimeofday(&time, NULL);
-    return((time.tv_sec * 1000) + (time.tv_usec / 1000));
+    return(time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
 void waiting(t_data *data, time_t waiting_time)

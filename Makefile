@@ -6,7 +6,7 @@
 #    By: joyim <joyim@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/31 22:50:22 by joyim             #+#    #+#              #
-#    Updated: 2025/03/31 22:51:45 by joyim            ###   ########.fr        #
+#    Updated: 2025/04/04 20:28:02 by joyim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ OBJ = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
 
 CC = cc -pthread
 CFLAGS = -g3 $(test)
-test = -Wall -Werror -Wextra -fsanitize=thread
+test = -Wall -Werror -Wextra -fsanitize=address
 RM = rm -rf
 
 all: $(NAME)

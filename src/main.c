@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joyson <joyson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 23:01:58 by joyim             #+#    #+#             */
-/*   Updated: 2025/04/04 18:49:18 by joyson           ###   ########.fr       */
+/*   Updated: 2025/04/04 19:59:54 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void monitor_death(t_data *data)
 		{
 			usleep(100);
 			pthread_mutex_lock(&data->lock_global);
-			if(data->philo[i].meals_required == 0
-			|| exit_condition(data)
-			|| dead_condition(&data->philo[i]))
+			if(data->philo[i].meals_required == 0 \
+				|| exit_condition(data) \
+				|| dead_condition(&data->philo[i]))
 			{
 				infinite = 0;
 				pthread_mutex_unlock(&data->lock_global);
