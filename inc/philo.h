@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: joyson <joyson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 22:52:31 by joyim             #+#    #+#             */
-/*   Updated: 2025/04/03 01:23:51 by joyim            ###   ########.fr       */
+/*   Updated: 2025/04/04 13:04:22 by joyson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_philo
 
 typedef struct s_data
 {
+	time_t start_time;
 	int nb_philos;
 	int death_time;
 	int eat_time;
@@ -96,6 +97,7 @@ typedef struct s_data
 
 // main.c
 void execution(t_data *data);
+void exit_execution(t_data *data);
 
 // error.c
 void handle_error(t_data *data, int error_num);
@@ -122,6 +124,14 @@ void print_state(t_philo *philo, char *str, t_state state);
 
 // routine.c
 void *routine(void *data);
-void single_philo(t_philo *philo);
+void *single_philo(t_philo *philo);
+void eat_routine(t_philo *philo);
+void sleep_think(t_philo *philo);
+
+// utils_philo.c
+time_t get_time(void);
+void waiting(t_data *data, time_t waiting_time);
+int exit_condition(t_data *data);
+int dead_condition(t_data *data);
 
 #endif

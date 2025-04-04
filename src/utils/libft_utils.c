@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   libft_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: joyson <joyson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 23:07:51 by joyim             #+#    #+#             */
-/*   Updated: 2025/04/01 19:16:10 by joyim            ###   ########.fr       */
+/*   Updated: 2025/04/04 10:40:06 by joyson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 void	ft_putendl_fd(char *s, int fd);
-int	ft_atoi(const char *str);
+int		ft_atoi(const char *str);
 
 void	ft_putendl_fd(char *s, int fd)
 {

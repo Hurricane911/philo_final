@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: joyson <joyson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 23:01:58 by joyim             #+#    #+#             */
-/*   Updated: 2025/04/03 01:18:45 by joyim            ###   ########.fr       */
+/*   Updated: 2025/04/04 10:56:30 by joyson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int main(int ac, char **av)
 	
 	init(&data, ac, av);
 	execution(&data);
+	exit_execution(&data);
 
 }
 
@@ -33,6 +34,7 @@ void execution(t_data *data)
 	int i;
 
 	i = 0;
+	data->start_time = get_time();
 	while(i < data->nb_philos)
 	{
 		pthread_mutex_lock(&data->philo[i].lock_eat_routine);
@@ -45,4 +47,17 @@ void execution(t_data *data)
 		i++;
 	}
 
+}
+
+void exit_execution(t_data *data)
+{
+	int i;
+
+	i = 0;
+	while(i < data->nb_philos)
+	{
+		pthread_join(data->philo[i++].thread, NULL);
+		i++;
+	}
+	cleanup_mutex(data);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: joyson <joyson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 23:08:19 by joyim             #+#    #+#             */
-/*   Updated: 2025/04/03 01:14:00 by joyim            ###   ########.fr       */
+/*   Updated: 2025/04/04 13:33:24 by joyson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,21 @@ void print_state(t_philo *philo, char *str, t_state state);
 void print_action(t_philo *philo, t_state state)
 {
 	pthread_mutex_lock(&philo->data->lock_print);
-	if(state == GOT_FORK1 || GOT_FORK2)
-		print_state(philo, "GOT_FORK", state);
-	else if(state == DIED)
+	if(exit_condition(philo->data))
+	{
+		pthread_mutex_unlock(&philo->data->lock_print);
+		return ;
+	}
+	if(state == GOT_FORK1 || state == GOT_FORK2)
+		print_state(philo, "has taken a fork", state);
+	if(state == DIED)
 		print_state(philo, "Died", state);
-	else if(state == EATING)
+	if(state == EATING)
 		print_state(philo, "Eating", state);
+	if(state == SLEEPING)
+		print_state(philo, "Sleeping", state);
+	if(state == THINKING)
+		print_state(philo, "Thinking", state);
 	pthread_mutex_unlock(&philo->data->lock_print);
 }
 
@@ -33,14 +42,16 @@ void print_state(t_philo *philo, char *str, t_state state)
 
 	state_color = COLOR;
 	if(state == DIED)
-		state_color == RED;
-	if(state == GOT_FORK1 || GOT_FORK2)
-		state_color == CYAN;
-	if(state_color == EATING)
-		state_color == GREEN;
-	if(state_color == SLEEPING)
-		state_color == PURPLE;
-	if(state_color == THINKING)
-		state_color == YELLOW;
+		state_color = RED;
+	else if(state == GOT_FORK1 || state == GOT_FORK2)
+		state_color = CYAN;
+	else if(state == EATING)
+		state_color = GREEN;
+	else if(state == SLEEPING)
+		state_color = PURPLE;
+	else if(state == THINKING)
+		state_color = YELLOW;
+	printf(YELLOW "%ld\t" GREEN "%d\t" COLOR "%s%s\n" COLOR, \
+	get_time() - philo->data->start_time, philo->id + 1, state_color, str);
 	
 }
