@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: joyson <joyson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 20:16:55 by joyim             #+#    #+#             */
-/*   Updated: 2025/04/04 14:08:49 by joyim            ###   ########.fr       */
+/*   Updated: 2025/04/04 18:25:36 by joyson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void init(t_data *data, int ac, char **av);
 void init_philos(t_data *data);
-void init_forks_lock(t_data *data);
+void init_forks_locks(t_data *data);
 
 void init(t_data *data, int ac, char **av)
 {

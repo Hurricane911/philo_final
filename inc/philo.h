@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: joyson <joyson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 22:52:31 by joyim             #+#    #+#             */
-/*   Updated: 2025/04/04 14:37:06 by joyim            ###   ########.fr       */
+/*   Updated: 2025/04/04 18:18:27 by joyson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,6 @@ void sleep_think(t_philo *philo);
 time_t get_time(void);
 void waiting(t_data *data, time_t waiting_time);
 int exit_condition(t_data *data);
-int dead_condition(t_data *data);
+int dead_condition(t_philo *philo);
 
 #endif

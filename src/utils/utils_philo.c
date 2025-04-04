@@ -2,7 +2,7 @@
 time_t get_time(void);
 void waiting(t_data *data, time_t waiting_time);
 int exit_condition(t_data *data);
-int dead_condition(t_data *data);
+int dead_condition(t_philo *philo);
 
 time_t get_time(void)
 {
@@ -37,18 +37,18 @@ int exit_condition(t_data *data)
     return (status);
 }
 
-int dead_condition(t_data *data)
+int dead_condition(t_philo *philo)
 {
-    pthread_mutex_lock(&data->philo->lock_eat_routine);
-    if(get_time() - data->philo->last_meal >= data->death_time)
+    pthread_mutex_lock(&philo->lock_eat_routine);
+    if(get_time() - philo->last_meal >= philo->data->death_time)
     {
-        print_action(data->philo, DIED);
-        pthread_mutex_lock(&data->lock_dead);
-        data->is_exit = 1;
-        pthread_mutex_unlock(&data->lock_dead);
-        pthread_mutex_unlock(&data->philo->lock_eat_routine);
+        print_action(philo, DIED);
+        pthread_mutex_lock(&philo->data->lock_exit);
+        philo->data->is_exit = 1;
+        pthread_mutex_unlock(&philo->data->lock_exit);
+        pthread_mutex_unlock(&philo->lock_eat_routine);
         return (1);
     }
-    pthread_mutex_unlock(&data->philo->lock_eat_routine);
+    pthread_mutex_unlock(&philo->lock_eat_routine);
     return (0);
 }

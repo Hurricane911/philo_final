@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: joyson <joyson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 23:04:41 by joyim             #+#    #+#             */
-/*   Updated: 2025/04/02 23:16:03 by joyim            ###   ########.fr       */
+/*   Updated: 2025/04/04 18:29:43 by joyson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ void destroy_mutex(t_data *data)
 	while(i < data->nb_philos)
 	{
 		pthread_mutex_destroy(&data->philo[i].lock_eat_routine);
+		pthread_mutex_destroy(&data->lock_forks[i]);
 		i++;
 	}
+	pthread_mutex_destroy(&data->lock_exit);
+	pthread_mutex_destroy(&data->lock_print);
+	pthread_mutex_destroy(&data->lock_dead);
+	
 }

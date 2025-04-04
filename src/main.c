@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
+/*   By: joyson <joyson@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 23:01:58 by joyim             #+#    #+#             */
-/*   Updated: 2025/04/04 14:55:05 by joyim            ###   ########.fr       */
+/*   Updated: 2025/04/04 18:49:18 by joyson           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main(int ac, char **av)
 	init(&data, ac, av);
 	execution(&data);
 	exit_execution(&data);
-
+	return (EXIT_SUCCESS);
 }
 
 void monitor_death(t_data *data)
@@ -46,18 +46,19 @@ void monitor_death(t_data *data)
 		{
 			usleep(100);
 			pthread_mutex_lock(&data->lock_global);
-			if(data->philo->meals_required == 0
+			if(data->philo[i].meals_required == 0
 			|| exit_condition(data)
-			|| dead_condition(data))
+			|| dead_condition(&data->philo[i]))
 			{
 				infinite = 0;
 				pthread_mutex_unlock(&data->lock_global);
 				break ;
 			}
 			i++;
+			pthread_mutex_unlock(&data->lock_global);
 		}
 	}
-	pthread_mutex_unlock(&data->lock_global);
+	
 }
 
 void execution(t_data *data)
@@ -77,7 +78,7 @@ void execution(t_data *data)
 			return(handle_error(data, THREAD_ERROR));
 		i++;
 	}
-	if(data->nb_philos > i)
+	if(data->nb_philos > 1)
 		monitor_death(data);
 }
 
