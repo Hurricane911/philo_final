@@ -10,11 +10,12 @@
 
 # Compiler and Flags
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g3
+CFLAGS = -Wall -Werror -Wextra
 Thread = -fsanitize=thread
 Memory = -fsanitize=memory
 Address = -fsanitize=address
 Thread_Flag = -pthread
+DEBUG = -g3
 RM = rm -rf
 
 # Output file name
