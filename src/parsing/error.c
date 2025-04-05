@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joyson <joyson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 23:04:41 by joyim             #+#    #+#             */
-/*   Updated: 2025/04/04 18:29:43 by joyson           ###   ########.fr       */
+/*   Updated: 2025/04/05 16:31:45 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,4 @@ void destroy_mutex(t_data *data)
 	pthread_mutex_destroy(&data->lock_exit);
 	pthread_mutex_destroy(&data->lock_print);
 	pthread_mutex_destroy(&data->lock_dead);
-	
 }

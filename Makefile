@@ -1,17 +1,26 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: joyim <joyim@student.42.fr>                +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/03/31 22:50:22 by joyim             #+#    #+#              #
-#    Updated: 2025/04/04 20:28:02 by joyim            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+#------------------------------------------------------------------------------#
+#                                  GENERICS                                    #
+#------------------------------------------------------------------------------#
 
+.PHONY: all clean fclean re
+
+#------------------------------------------------------------------------------#
+#                                VARIABLES                                     #
+#------------------------------------------------------------------------------#
+
+# Compiler and Flags
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra -g3
+Thread = -fsanitize=thread
+Memory = -fsanitize=memory
+Address = -fsanitize=address
+Thread_Flag = -pthread
+RM = rm -rf
+
+# Output file name
 NAME = philo
 
+# Directories
 SRC_DIR = src
 SRC_DIRS = $(SRC_DIR) \
 			$(SRC_DIR)/parsing \
@@ -24,13 +33,13 @@ INC_DIR = inc
 SRC = $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
 OBJ = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
 
-CC = cc -pthread
-CFLAGS = -g3 $(test)
-test = -Wall -Werror -Wextra -fsanitize=address
-RM = rm -rf
+#------------------------------------------------------------------------------#
+#                                 TARGETS                                      #
+#------------------------------------------------------------------------------#
 
 all: $(NAME)
 
+# Generates output file
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
@@ -50,5 +59,3 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
-
-.PHONY: all clean fclean re
