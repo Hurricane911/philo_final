@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joyson <joyson@student.42.fr>              +#+  +:+       +#+        */
+/*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 22:52:31 by joyim             #+#    #+#             */
-/*   Updated: 2025/04/04 18:18:27 by joyson           ###   ########.fr       */
+/*   Updated: 2025/04/05 17:10:59 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef enum e_state
 # define FORMAT_MSG "FORMAT Error: \n\
 1 - <Philo > 200>\n\
 2 - <Has Negative Values>\n\
-3 - "
+3 - has non-integer value"
 
 # define MUTEX_MSG "Mutex_ERROR"
 # define THREAD_MSG "THREAD_ERRO"
